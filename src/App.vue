@@ -1,28 +1,41 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+  <v-app>
+    <v-app-bar app color="teal" dark>
+      <div class="d-flex align-center">
+        <h1 class="logo-name white--text">Kirsh Note</h1>
+      </div>
+
+      <v-spacer></v-spacer>
+        <v-btn class="black" @click.stop="showModal">
+        Create note
+      </v-btn>
+    </v-app-bar>
+
+    <v-main>
+      <ModalWindow/>
+      <AlertError v-show="this.$store.state.alertNoteError"/>
+    </v-main>
+  </v-app>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue';
+// eslint-disable-next-line import/extensions
+import ModalWindow from '@/components/ModalWindow';
+// eslint-disable-next-line import/extensions
+import AlertError from '@/components/AlertError';
+import { mapMutations } from 'vuex';
 
 export default {
   name: 'App',
-  components: {
-    HelloWorld,
+
+  components: { ModalWindow, AlertError },
+
+  methods: {
+    ...mapMutations(['showModal']),
   },
 };
 </script>
 
 <style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+@import "src/assets/style/styles";
 </style>
