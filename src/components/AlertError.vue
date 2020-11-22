@@ -10,7 +10,7 @@
           YOUR NOTE IS EMPTY
         </div>
         <v-list-item-subtitle class="alert__note-subtitle mb-1">
-          Please fill in your note and choose its color
+          Please fill in your note and choose it's color
         </v-list-item-subtitle>
       </v-list-item-content>
 

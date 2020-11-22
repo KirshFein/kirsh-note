@@ -12,8 +12,15 @@ export default new Vuex.Store({
   getters: {
   },
   actions: {
+    createNewNote({ commit }, note) {
+      commit('create_note', note);
+    },
   },
   mutations: {
+    create_note(state, note) {
+      // eslint-disable-next-line no-unused-expressions
+      note !== '' ? state.notes.push(note) : null;
+    },
     showModal(state) {
       state.dialog = true;
     },

@@ -6,7 +6,8 @@
       </div>
 
       <v-spacer></v-spacer>
-        <v-btn class="black" @click.stop="showModal">
+        <v-btn class="black"
+               @click.stop="showModal">
         Create note
       </v-btn>
     </v-app-bar>
@@ -14,6 +15,9 @@
     <v-main>
       <ModalWindow/>
       <AlertError v-show="this.$store.state.alertNoteError"/>
+      <main class="d-flex justify-center mt-8">
+        <Note/>
+      </main>
     </v-main>
   </v-app>
 </template>
@@ -23,12 +27,14 @@
 import ModalWindow from '@/components/ModalWindow';
 // eslint-disable-next-line import/extensions
 import AlertError from '@/components/AlertError';
+// eslint-disable-next-line import/extensions
+import Note from '@/components/Note';
 import { mapMutations } from 'vuex';
 
 export default {
   name: 'App',
 
-  components: { ModalWindow, AlertError },
+  components: { ModalWindow, AlertError, Note },
 
   methods: {
     ...mapMutations(['showModal']),

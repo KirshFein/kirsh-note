@@ -1,5 +1,5 @@
 <template>
-  <v-dialog v-model="dialog" max-width="500">
+  <v-dialog persistent v-model="dialog" max-width="500">
     <v-card>
       <v-col cols="12">
         <v-text-field
@@ -45,7 +45,7 @@
 </template>
 
 <script>
-import { mapMutations, mapState } from 'vuex';
+import { mapMutations, mapState, mapActions } from 'vuex';
 
 export default {
   name: 'ModalWindow',
@@ -60,25 +60,27 @@ export default {
     colorNote: '',
   }),
   methods: {
+    ...mapActions(['createNewNote']),
+    ...mapMutations(['showModal', 'hideModal', 'showError', 'hideError']),
     createNote() {
-      if (this.titleNote === '' && this.colorNote === '' && this.contentNote === '') {
-        this.showError();
-        setTimeout(() => {
-          this.hideError();
-        }, 3000);
-      } else {
-        const noteConstructor = {
+      if (this.titleNote !== '' && this.colorNote !== '' && this.contentNote !== '') {
+        this.createNewNote({
           id: new Date().getTime(),
           title: this.titleNote,
           content: this.contentNote,
           colorNote: this.colorNote,
-        };
-        this.notes.push(noteConstructor);
+        });
         this.hideModal();
-        console.log(this.notes);
+        this.titleNote = '';
+        this.contentNote = '';
+        this.colorNote = '';
+      } else {
+        this.showError();
+        setTimeout(() => {
+          this.hideError();
+        }, 3000);
       }
     },
-    ...mapMutations(['showModal', 'hideModal', 'showError', 'hideError']),
   },
 };
 </script>
