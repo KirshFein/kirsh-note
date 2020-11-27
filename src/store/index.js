@@ -16,11 +16,17 @@ export default new Vuex.Store({
     createNewNote({ commit }, note) {
       commit('create_note', note);
     },
+    deleteNote({ commit }, id) {
+      commit('delete_note', id);
+    },
   },
   mutations: {
     create_note(state, note) {
       // eslint-disable-next-line no-unused-expressions
       note !== '' ? state.notes.push(note) : null;
+    },
+    delete_note(state, id) {
+      state.notes = state.notes.filter((note) => note.id !== id);
     },
     showModal(state) {
       state.dialog = true;

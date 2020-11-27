@@ -14,8 +14,8 @@
     <v-main>
       <ModalWindow/>
       <AlertError v-show="this.$store.state.alertNoteError"/>
-      <main class="d-flex justify-center mt-8">
-          <ListNotes :all-notes="allNotes"/>
+      <main class="mt-8 pl-3 pr-3">
+        <ListNotes :all-notes="allNotes"/>
       </main>
     </v-main>
   </v-app>

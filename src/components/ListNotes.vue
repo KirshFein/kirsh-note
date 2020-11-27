@@ -1,5 +1,5 @@
 <template>
-  <section>
+  <section class="d-flex flex-row flex-wrap">
     <div
       v-for="note in allNotes"
       :key="note.id"
