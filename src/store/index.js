@@ -10,6 +10,7 @@ export default new Vuex.Store({
     alertNoteError: false,
   },
   getters: {
+    allNotes: (state) => state.notes,
   },
   actions: {
     createNewNote({ commit }, note) {
