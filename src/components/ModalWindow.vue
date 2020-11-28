@@ -78,7 +78,7 @@ export default {
         this.showError();
         setTimeout(() => {
           this.hideError();
-        }, 3000);
+        }, 2000);
       }
     },
   },

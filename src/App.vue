@@ -1,17 +1,18 @@
 <template>
   <v-app>
-    <v-app-bar app color="teal" dark>
+    <v-app-bar app color="purple darken-4">
       <div class="d-flex align-center">
-        <h1 class="logo-name white--text">Kirsh Note</h1>
+        <h2 class="logo-name white--text">Kirsh Note</h2>
       </div>
 
       <v-spacer></v-spacer>
-        <v-btn class="black" @click.stop="showModal">
+        <v-btn class="purple lighten-5" @click.stop="showModal">
         Create note
       </v-btn>
     </v-app-bar>
 
     <v-main>
+      <GreetingIcon v-if="allNotes.length === 0" class="greeting-icon"/>
       <ModalWindow/>
       <AlertError v-show="this.$store.state.alertNoteError"/>
       <main class="mt-8 pl-3 pr-3">
@@ -28,19 +29,20 @@ import ModalWindow from '@/components/ModalWindow';
 import AlertError from '@/components/AlertError';
 // eslint-disable-next-line import/extensions
 import ListNotes from '@/components/ListNotes';
+// eslint-disable-next-line import/extensions
+import GreetingIcon from '@/components/GreetingIcon';
 import { mapMutations, mapGetters } from 'vuex';
 
 export default {
   name: 'App',
-
-  components: { ModalWindow, AlertError, ListNotes },
-
+  components: {
+    ModalWindow, AlertError, ListNotes, GreetingIcon,
+  },
   computed: {
     ...mapGetters(['allNotes']),
   },
-
   methods: {
-    ...mapMutations(['showModal']),
+    ...mapMutations(['showModal', 'hideGreetingAlert']),
   },
 };
 </script>

@@ -8,6 +8,7 @@ export default new Vuex.Store({
     notes: [],
     dialog: false,
     alertNoteError: false,
+    greetingAlert: true,
   },
   getters: {
     allNotes: (state) => state.notes,
@@ -39,6 +40,11 @@ export default new Vuex.Store({
     },
     hideError(state) {
       state.alertNoteError = false;
+    },
+    hideGreetingAlert(state) {
+      if (state.notes.length === null) {
+        state.greetingAlert = false;
+      }
     },
   },
 });
