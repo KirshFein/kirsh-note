@@ -10,7 +10,6 @@
 </template>
 
 <script>
-// eslint-disable-next-line import/extensions
 import Note from '@/components/Note';
 
 export default {

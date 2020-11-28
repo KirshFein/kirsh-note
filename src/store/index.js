@@ -23,8 +23,7 @@ export default new Vuex.Store({
   },
   mutations: {
     create_note(state, note) {
-      // eslint-disable-next-line no-unused-expressions
-      note !== '' ? state.notes.push(note) : null;
+      return note !== '' ? state.notes.push(note) : null;
     },
     delete_note(state, id) {
       state.notes = state.notes.filter((note) => note.id !== id);

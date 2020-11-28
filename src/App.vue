@@ -23,13 +23,9 @@
 </template>
 
 <script>
-// eslint-disable-next-line import/extensions
 import ModalWindow from '@/components/ModalWindow';
-// eslint-disable-next-line import/extensions
 import AlertError from '@/components/AlertError';
-// eslint-disable-next-line import/extensions
 import ListNotes from '@/components/ListNotes';
-// eslint-disable-next-line import/extensions
 import GreetingIcon from '@/components/GreetingIcon';
 import { mapMutations, mapGetters } from 'vuex';
 
