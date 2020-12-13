@@ -2,14 +2,16 @@
   <v-dialog persistent v-model="dialog" max-width="500">
     <v-card>
       <v-col cols="12">
-        <v-text-field v-model="titleNote" label="Title note" hide-details="auto"></v-text-field>
+        <v-text-field v-if="sendData.length !== 0" v-model="validateTitleNote" label="Title note" hide-details="auto"></v-text-field>
+        <v-text-field v-else v-model="titleNote" label="Title note" hide-details="auto"></v-text-field>
       </v-col>
 
       <v-col cols="12">
-        <v-textarea v-model="contentNote" solo name="input-7-4" label="Note text"></v-textarea>
+        <v-textarea v-if="sendData.length !== 0" v-model="validateContentNote" solo name="input-7-4" label="Note text"></v-textarea>
+        <v-textarea v-else v-model="contentNote" solo name="input-7-4" label="Note text"></v-textarea>
       </v-col>
 
-      <div class="d-flex justify-space-around mb-5  ">
+      <div class="d-flex justify-space-around mb-5" v-if="sendData.length === 0">
         <div
           v-for="(item, i) in colorsForPicker"
           :key="i"
@@ -19,6 +21,19 @@
           }"
           @click="colorNote = item"
           :class="{ picker__active: colorNote === item }"
+        ></div>
+      </div>
+
+      <div class="d-flex justify-space-around mb-5" v-else>
+        <div
+          v-for="(item, i) in colorsForPicker"
+          :key="i"
+          class="picker"
+          :style="{
+            backgroundColor: item
+          }"
+          @click="validateColorNote = item"
+          :class="{ picker__active: validateColorNote === item }"
         ></div>
       </div>
 
@@ -48,11 +63,12 @@ export default {
     sendData() {
       if (this.sendData.length !== 0) {
         for (let element of this.sendData) {
-          this.titleNote = element.title;
-          this.contentNote = element.content;
-          this.colorNote = element.colorNote;
+          this.validateTitleNote = element.title;
+          this.validateContentNote = element.content;
+          this.validateColorNote = element.colorNote;
         }
       }
+      console.log(this.sendData);
     }
   },
   data: () => ({
@@ -60,7 +76,10 @@ export default {
     notes: [],
     titleNote: "",
     contentNote: "",
-    colorNote: ""
+    colorNote: "",
+    validateTitleNote: "",
+    validateContentNote: "",
+    validateColorNote: ""
   }),
   methods: {
     ...mapActions(["createNewNote"]),

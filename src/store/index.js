@@ -41,7 +41,7 @@ export default new Vuex.Store({
     },
     hideModal(state) {
       state.dialog = false;
-      if (state.sendData.length !== 0) state.sendData.length = 0;
+      state.sendData.length = 0;
     },
     showError(state) {
       state.alertNoteError = true;
@@ -57,8 +57,5 @@ export default new Vuex.Store({
     send_data_to_modal(state, noteData) {
       return state.sendData.push(noteData);
     }
-    // clean_data_to_modal(state) {
-    //   state.sendData = [];
-    // }
   }
 });
