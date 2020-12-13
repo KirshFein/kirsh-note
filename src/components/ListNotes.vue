@@ -1,22 +1,19 @@
 <template>
   <section class="d-flex flex-row flex-wrap">
-    <div
-      v-for="note in allNotes"
-      :key="note.id"
-    >
-      <Note :note="note"/>
+    <div v-for="note in allNotes" :key="note.id">
+      <Note :note="note" />
     </div>
   </section>
 </template>
 
 <script>
-import Note from '@/components/Note';
+import Note from "@/components/Note";
 
 export default {
-  name: 'ListsNote',
+  name: "ListsNote",
   components: { Note },
   props: {
-    allNotes: {},
-  },
+    allNotes: {}
+  }
 };
 </script>

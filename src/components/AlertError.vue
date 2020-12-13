@@ -1,9 +1,5 @@
 <template>
-  <v-card
-    class="alert__note-error mx-auto"
-    max-width="340"
-    outlined
-  >
+  <v-card class="alert__note-error mx-auto" max-width="340" outlined>
     <v-list-item three-line>
       <v-list-item-content>
         <div class="alert__note-title overline mb-4">
@@ -13,22 +9,19 @@
           Please fill in your note and choose it's color
         </v-list-item-subtitle>
       </v-list-item-content>
-
     </v-list-item>
   </v-card>
 </template>
 
 <script>
-import { mapState } from 'vuex';
+import { mapState } from "vuex";
 
 export default {
-  name: 'AlertError',
+  name: "AlertError",
   computed: {
-    ...mapState(['alertNoteError']),
-  },
+    ...mapState(["alertNoteError"])
+  }
 };
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

@@ -2,20 +2,11 @@
   <v-dialog persistent v-model="dialog" max-width="500">
     <v-card>
       <v-col cols="12">
-        <v-text-field
-          v-model="titleNote"
-          label="Title note"
-          hide-details="auto"
-        ></v-text-field>
+        <v-text-field v-model="titleNote" label="Title note" hide-details="auto"></v-text-field>
       </v-col>
 
       <v-col cols="12">
-        <v-textarea
-          v-model="contentNote"
-          solo
-          name="input-7-4"
-          label="Note text"
-        ></v-textarea>
+        <v-textarea v-model="contentNote" solo name="input-7-4" label="Note text"></v-textarea>
       </v-col>
 
       <div class="d-flex justify-space-around mb-5  ">
@@ -24,10 +15,10 @@
           :key="i"
           class="picker"
           :style="{
-                backgroundColor: item
-              }"
+            backgroundColor: item
+          }"
           @click="colorNote = item"
-          :class="{'picker__active': colorNote === item}"
+          :class="{ picker__active: colorNote === item }"
         ></div>
       </div>
 
@@ -37,7 +28,7 @@
         </v-btn>
 
         <v-btn @click="createNote" color="blue">
-          Create Note
+          {{ this.sendData.length !== 0 ? "Update note" : "Create Note" }}
         </v-btn>
       </div>
     </v-card>
@@ -45,42 +36,54 @@
 </template>
 
 <script>
-import { mapMutations, mapState, mapActions } from 'vuex';
+import { mapMutations, mapState, mapActions, mapGetters } from "vuex";
 
 export default {
-  name: 'ModalWindow',
+  name: "ModalWindow",
   computed: {
-    ...mapState(['dialog']),
+    ...mapState(["dialog"]),
+    ...mapGetters(["sendData"])
+  },
+  watch: {
+    sendData() {
+      if (this.sendData.length !== 0) {
+        for (let element of this.sendData) {
+          this.titleNote = element.title;
+          this.contentNote = element.content;
+          this.colorNote = element.colorNote;
+        }
+      }
+    }
   },
   data: () => ({
-    colorsForPicker: ['#d9be75', '#e34d75', '#7587d9', '#6c36c9'],
+    colorsForPicker: ["#d9be75", "#e34d75", "#7587d9", "#6c36c9"],
     notes: [],
-    titleNote: '',
-    contentNote: '',
-    colorNote: '',
+    titleNote: "",
+    contentNote: "",
+    colorNote: ""
   }),
   methods: {
-    ...mapActions(['createNewNote']),
-    ...mapMutations(['showModal', 'hideModal', 'showError', 'hideError']),
+    ...mapActions(["createNewNote"]),
+    ...mapMutations(["showModal", "hideModal", "showError", "hideError"]),
     createNote() {
-      if (this.titleNote !== '' && this.colorNote !== '' && this.contentNote !== '') {
+      if (this.titleNote !== "" && this.colorNote !== "" && this.contentNote !== "") {
         this.createNewNote({
           id: new Date().getTime(),
           title: this.titleNote,
           content: this.contentNote,
-          colorNote: this.colorNote,
+          colorNote: this.colorNote
         });
         this.hideModal();
-        this.titleNote = '';
-        this.contentNote = '';
-        this.colorNote = '';
+        this.titleNote = "";
+        this.contentNote = "";
+        this.colorNote = "";
       } else {
         this.showError();
         setTimeout(() => {
           this.hideError();
         }, 2000);
       }
-    },
-  },
+    }
+  }
 };
 </script>
