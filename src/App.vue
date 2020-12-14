@@ -4,7 +4,7 @@
     <v-main>
       <GreetingIcon v-if="allNotes.length === 0" class="greeting-icon" />
       <ModalWindow />
-      <AlertError v-show="this.$store.state.alertNoteError" />
+      <AlertError v-if="this.$store.state.alertNoteError" />
       <main class="mt-8 pl-3 pr-3">
         <ListNotes :all-notes="allNotes" />
       </main>
