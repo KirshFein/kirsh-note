@@ -27,9 +27,8 @@
           Close
         </v-btn>
 
-        <v-btn @click="createNote" color="blue">
-          Create
-        </v-btn>
+        <v-btn @click="createNote" color="blue"> Create </v-btn>
+        <!--         <v-btn @click="createNote" color="blue"> Create {{ this.stateOneNote !== null ? "Update" : "Create" }} </v-btn>-->
       </div>
     </v-card>
   </v-dialog>
@@ -40,12 +39,7 @@ import { mapMutations, mapState, mapActions } from "vuex";
 
 export default {
   name: "ModalWindow",
-  // mounted() {
-  //   this.checkStore();
-  // },
-  computed: {
-    ...mapState(["dialog"])
-  },
+  computed: { ...mapState(["dialog"]) },
   data: () => ({
     colorsForPicker: ["#d9be75", "#e34d75", "#7587d9", "#6c36c9"],
     notes: [],
@@ -56,14 +50,6 @@ export default {
   methods: {
     ...mapActions(["createNewNote"]),
     ...mapMutations(["showModal", "hideModal", "showError", "hideError"]),
-    // checkStore() {
-    //   if (this.singleNote !== null) {
-    //     let copyNote = { ...this.singleNote };
-    //     this.titleNote = copyNote.title;
-    //     this.contentNote = copyNote.content;
-    //     this.colorNote = copyNote.colorNote;
-    //   }
-    // },
     createNote() {
       if (this.titleNote !== "" && this.colorNote !== "" && this.contentNote !== "") {
         this.createNewNote({
@@ -76,7 +62,6 @@ export default {
         this.titleNote = "";
         this.contentNote = "";
         this.colorNote = "";
-        return;
       } else {
         this.showError();
         setTimeout(() => {

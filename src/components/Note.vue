@@ -31,11 +31,11 @@ export default {
   },
   methods: {
     ...mapActions(["deleteNote"]),
-    ...mapMutations(["showModal", "sendNote"])
-    // showEditModal(note) {
-    //   this.sendNote(note);
-    //   this.showModal();
-    // }
+    ...mapMutations(["showModal", "sendNote"]),
+    showEditModal(note) {
+      this.sendNote(note);
+      this.showModal();
+    }
   }
 };
 </script>
