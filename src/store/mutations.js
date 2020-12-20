@@ -4,11 +4,13 @@ const create_note = (state, note) => {
 const delete_note = (state, id) => {
   state.notes = state.notes.filter(note => note.id !== id);
 };
-const showModal = state => {
+const editorModal = (state, note) => {
   state.dialog = true;
+  return (state.singleNote = note);
 };
 const hideModal = state => {
   state.dialog = false;
+  return (state.singleNote = null);
 };
 const showError = state => {
   state.alertNoteError = true;
@@ -19,19 +21,13 @@ const hideError = state => {
 const hideGreetingAlert = state => {
   if (state.notes.length === null) state.greetingAlert = false;
 };
-const sendNote = (state, note) => {
-  if (state.singleNote !== null) state.singleNote = null;
-  state.singleNote = note;
-  console.log(state.singleNote);
-};
 
 export default {
   create_note,
   delete_note,
-  showModal,
   hideModal,
   showError,
   hideError,
   hideGreetingAlert,
-  sendNote
+  editorModal
 };

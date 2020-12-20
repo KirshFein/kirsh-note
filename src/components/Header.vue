@@ -5,7 +5,7 @@
     </div>
 
     <v-spacer> </v-spacer>
-    <v-btn class="purple lighten-5" @click.stop="showModal">
+    <v-btn class="purple lighten-5" @click.stop="editorModal(null)">
       Create note
     </v-btn>
   </v-app-bar>
@@ -16,7 +16,7 @@ import { mapMutations } from "vuex";
 export default {
   name: "Header",
   methods: {
-    ...mapMutations(["showModal"])
+    ...mapMutations(["editorModal"])
   }
 };
 </script>

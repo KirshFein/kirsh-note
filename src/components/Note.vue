@@ -31,10 +31,9 @@ export default {
   },
   methods: {
     ...mapActions(["deleteNote"]),
-    ...mapMutations(["showModal", "sendNote"]),
+    ...mapMutations(["editorModal"]),
     showEditModal(note) {
-      this.sendNote(note);
-      this.showModal();
+      this.editorModal(note);
     }
   }
 };

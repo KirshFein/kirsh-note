@@ -2,8 +2,8 @@
   <v-app>
     <Header />
     <v-main>
+      <ModalWindow v-if="this.$store.state.dialog" />
       <GreetingIcon v-if="allNotes.length === 0" class="greeting-icon" />
-      <ModalWindow />
       <AlertError v-if="this.$store.state.alertNoteError" />
       <main class="mt-8 pl-3 pr-3">
         <ListNotes :all-notes="allNotes" />

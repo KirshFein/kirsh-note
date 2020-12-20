@@ -6,7 +6,7 @@
       </v-col>
 
       <v-col cols="12">
-        <v-textarea v-model="contentNote" solo name="input-7-4" label="Note text"></v-textarea>
+        <v-textarea v-model="contentNote" solo label="Note text"></v-textarea>
       </v-col>
 
       <div class="d-flex justify-space-around mb-5">
@@ -27,8 +27,7 @@
           Close
         </v-btn>
 
-        <v-btn @click="createNote" color="blue"> Create </v-btn>
-        <!--         <v-btn @click="createNote" color="blue"> Create {{ this.stateOneNote !== null ? "Update" : "Create" }} </v-btn>-->
+        <v-btn @click="createNote" color="blue"> {{ this.singleNote !== null ? "Update note" : "Create" }} </v-btn>
       </div>
     </v-card>
   </v-dialog>
@@ -39,7 +38,19 @@ import { mapMutations, mapState, mapActions } from "vuex";
 
 export default {
   name: "ModalWindow",
-  computed: { ...mapState(["dialog"]) },
+  computed: {
+    ...mapState(["dialog", "singleNote"])
+  },
+  mounted() {
+    if (this.singleNote !== null) {
+      this.updateValue();
+    }
+  },
+  destroyed() {
+    this.titleNote = "";
+    this.contentNote = "";
+    this.colorNote = "";
+  },
   data: () => ({
     colorsForPicker: ["#d9be75", "#e34d75", "#7587d9", "#6c36c9"],
     notes: [],
@@ -49,7 +60,7 @@ export default {
   }),
   methods: {
     ...mapActions(["createNewNote"]),
-    ...mapMutations(["showModal", "hideModal", "showError", "hideError"]),
+    ...mapMutations(["editorModal", "hideModal", "showError", "hideError"]),
     createNote() {
       if (this.titleNote !== "" && this.colorNote !== "" && this.contentNote !== "") {
         this.createNewNote({
@@ -67,6 +78,14 @@ export default {
         setTimeout(() => {
           this.hideError();
         }, 2000);
+      }
+    },
+    updateValue() {
+      if (this.singleNote !== null) {
+        const { title, content, colorNote } = this.singleNote;
+        this.titleNote = title;
+        this.contentNote = content;
+        this.colorNote = colorNote;
       }
     }
   }
