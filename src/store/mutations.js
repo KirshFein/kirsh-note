@@ -1,3 +1,5 @@
+import Vue from "vue";
+
 const create_note = (state, note) => {
   return note !== "" ? state.notes.push(note) : null;
 };
@@ -21,6 +23,14 @@ const hideError = state => {
 const hideGreetingAlert = state => {
   if (state.notes.length === null) state.greetingAlert = false;
 };
+const update_note = (state, note) => {
+  state.notes.forEach((noteArr, index) => {
+    if (noteArr.id === note.id) {
+      Vue.set(state.notes, index, note);
+    }
+  });
+  state.dialog = false;
+};
 
 export default {
   create_note,
@@ -29,5 +39,6 @@ export default {
   showError,
   hideError,
   hideGreetingAlert,
-  editorModal
+  editorModal,
+  update_note
 };

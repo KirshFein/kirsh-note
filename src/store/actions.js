@@ -4,5 +4,8 @@ export default {
   },
   deleteNote({ commit }, id) {
     commit("delete_note", id);
+  },
+  updateNote({ commit }, note) {
+    commit("update_note", note);
   }
 };

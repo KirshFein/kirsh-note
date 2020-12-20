@@ -59,10 +59,10 @@ export default {
     colorNote: ""
   }),
   methods: {
-    ...mapActions(["createNewNote"]),
+    ...mapActions(["createNewNote", "updateNote"]),
     ...mapMutations(["editorModal", "hideModal", "showError", "hideError"]),
     createNote() {
-      if (this.titleNote !== "" && this.colorNote !== "" && this.contentNote !== "") {
+      if (this.titleNote !== "" && this.colorNote !== "" && this.contentNote !== "" && this.singleNote === null) {
         this.createNewNote({
           id: new Date().getTime(),
           title: this.titleNote,
@@ -73,6 +73,13 @@ export default {
         this.titleNote = "";
         this.contentNote = "";
         this.colorNote = "";
+      } else if (this.singleNote !== null) {
+        this.updateNote({
+          id: this.singleNote.id,
+          title: this.titleNote,
+          content: this.contentNote,
+          colorNote: this.colorNote
+        });
       } else {
         this.showError();
         setTimeout(() => {
