@@ -1,5 +1,5 @@
 <template>
-  <v-card class="black pa-2 mr-4 mb-5" elevation="5" rounded max-width="500" :style="{ backgroundColor: note.colorNote + '!important' }">
+  <v-card class="black pa-2 mr-4 mb-5" elevation="5" rounded max-width="250" :style="{ backgroundColor: note.colorNote + '!important' }">
     <v-card-title class="black--text font-weight-bold">{{ note.title }}</v-card-title>
     <v-card-text class="black--text font-weight-regular">{{ note.content }}</v-card-text>
     <div class="d-flex justify-end">
