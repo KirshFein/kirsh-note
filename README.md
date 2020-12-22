@@ -2,6 +2,8 @@
 
 ## Note application that will help you save thoughts or some notes.
 
+- [Demo frontend side](https://kirshfein.github.io/kirsh-note/ )
+
 ---
 
 ## Project setup
