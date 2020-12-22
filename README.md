@@ -36,5 +36,5 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 
 # Task box future
 
-- [ ] create frontend side
+- [x] create frontend side
 - [ ] create backend side for save, delete and update note
