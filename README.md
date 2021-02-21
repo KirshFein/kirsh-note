@@ -4,6 +4,12 @@
 
 - [Demo frontend side](https://kirshfein.github.io/kirsh-note/ )
 
+## JSON Server
+If you want to download the project and save the notes, 
+you can install `npm install -g json-server` and write the 
+`json-server --watch 'file name'` command to the db.json file, and they 
+will be saved in json format
+
 ---
 
 ## Project setup

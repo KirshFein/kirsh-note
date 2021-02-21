@@ -1,39 +1,3 @@
-<template>
-  <v-dialog persistent v-model="dialog" max-width="500">
-    <v-card>
-      <v-col cols="12">
-        <v-text-field v-model="titleNote" label="Title note" hide-details="auto"></v-text-field>
-      </v-col>
-
-      <v-col cols="12">
-        <v-textarea v-model="contentNote" solo label="Note text"></v-textarea>
-      </v-col>
-
-      <div class="d-flex justify-space-around mb-5">
-        <div
-          v-for="(item, i) in colorsForPicker"
-          :key="i"
-          class="picker"
-          :style="{
-            backgroundColor: item
-          }"
-          @click="colorNote = item"
-          :class="{ picker__active: colorNote === item }"
-        ></div>
-      </div>
-
-      <div class="modal-footer d-flex justify-space-between pa-3">
-        <v-btn color="error" @click="hideModal">
-          Close
-        </v-btn>
-
-        <v-btn @click="createNote" color="blue"> {{ this.singleNote !== null ? "Update note" : "Create" }} </v-btn>
-      </div>
-    </v-card>
-  </v-dialog>
-</template>
-
-<script>
 import { mapMutations, mapState, mapActions } from "vuex";
 
 export default {
@@ -97,4 +61,3 @@ export default {
     }
   }
 };
-</script>

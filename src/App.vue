@@ -13,12 +13,12 @@
 </template>
 
 <script>
-import ModalWindow from "@/components/ModalWindow";
-import AlertError from "@/components/AlertError";
-import ListNotes from "@/components/ListNotes";
-import GreetingIcon from "@/components/GreetingIcon";
-import Header from "@/components/Header";
-import { mapGetters } from "vuex";
+import ModalWindow from "@/components/ModalWindow/ModalWindow.vue";
+import AlertError from "@/components/AlertError/AlertError.vue";
+import ListNotes from "@/components/ListNotes/ListNotes.vue";
+import GreetingIcon from "@/components/GreetingIcon/GreetingIcon.vue";
+import Header from "@/components/Header/Header.vue";
+import { mapGetters, mapActions } from "vuex";
 
 export default {
   name: "App",
@@ -30,7 +30,11 @@ export default {
     GreetingIcon
   },
   computed: {
-    ...mapGetters(["allNotes"])
+    ...mapGetters(["allNotes"]),
+    ...mapActions(["GET_DATA"])
+  },
+  mounted() {
+    this.GET_DATA;
   }
 };
 </script>
